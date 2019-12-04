@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <!--指定 当前工程在 mointer中的显示名称-->
+    <dubbo:application name="01-provider" />
+    <!--指定注册中心-->
+    <dubbo:registry address="zookeeper://154.8.222.128:2181" />
+
+    <!--<dubbo:protocol  name="dubbo" port="2181" accepts="10"/>-->
+    <!--指定暴露的服务-->
+    <bean id = "someService" class="com.kkb.SomeServiceImpl"></bean>
+    <bean id="otherService" class="com.kkb.NewSomeServiceImpl"></bean>
+
+    <!--<dubbo:service interface="com.kkb.SomeService" ref="someService" cluster="FailOver" retries="2"/>-->
+
+    <dubbo:service interface="com.kkb.SomeService" ref="otherService" />
+
+
+</beans>
